@@ -11,9 +11,7 @@ class Process {
   Process();
   ~Process();
  protected:
-
-
-
+  bool running_;
 };
 
 std::vector<Process*> ProcessList;
