@@ -21,6 +21,9 @@
     <ClCompile Include="windows\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="process\process_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windows\application.h">
@@ -74,7 +77,10 @@
     <ClInclude Include="collections\vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="process.h">
+    <ClInclude Include="process\process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

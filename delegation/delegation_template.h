@@ -149,130 +149,113 @@ Description	: same functionality as the function class, along with
 *********************************************************************/
 template <templatePARAMS>
 class FunctionList {
-  public:
-    FunctionList()
-    {
-        calls.clear();
+ public:
+  FunctionList() {
+      calls.clear();
+  }
+
+  ~FunctionList() {
+      Clean();
+  }
+
+  FunctionList& operator=(void (*p0)(PARAMS)) {
+      Clean();
+      Bind(p0);
+      return *this;
+  }
+
+  template <class ObjectType>
+  FunctionList& operator=(const pair<ObjectType,templateICALLS>& p0) {
+      Clean();
+      Bind<ObjectType>(p0.object_pointer,p0.member_function_pointer);
+      return *this;
+  }
+
+
+  FunctionList& operator+=(void (*p0)(PARAMS)) {
+      Bind(p0);
+      return *this;
+  }
+
+  template <class ObjectType>
+  FunctionList& operator+=(const pair<ObjectType,templateICALLS>& p0) {
+      Bind<ObjectType>(p0.object_pointer,p0.member_function_pointer);
+      return *this;
+  }
+
+  FunctionList& operator-=(void (*p0)(PARAMS)) {
+    if (calls[p0] != null) {
+        delete calls[p0];
+        calls[p0] = null;
+        calls.erase(calls.find(p0));
     }
+    return *this;
+  }
 
-    ~FunctionList()
-    {
-        Clean();
-    }
+  //check += , make it even
+  template <class ObjectType>
+  FunctionList& operator-=(const pair<ObjectType,templateICALLS>& p0) {
+      union
+      {
+          void (ObjType::*mf)(PARAMS);
+          void* mfptr;
+      }x;
 
-    FunctionList& operator=(void (*p0)(PARAMS))
-    {
-        Clean();
-        Bind(p0);
-        return *this;
-    }
+      x.mf = p0.mfp;
+      void* mapptr = x.mfptr;
+      if (calls[mapptr] != null)
+      {
+          delete calls[mapptr];
+          calls[mapptr] = null;
+          calls.erase(calls.find(mapptr));
+      }
+      return *this;
+  }
 
-    template <class ObjectType>
-    FunctionList& operator=(const pair<ObjectType,templateICALLS>& p0)
-    {
-        Clean();
-        Bind<ObjectType>(p0.object_pointer,p0.member_function_pointer);
-        return *this;
-    }
+  void Bind(void (*p0)(PARAMS)) {
+      if (calls[p0] == null)
+          calls[p0] = new hidden::CallStaticFunction<templateICALLS>(p0funcptr);
+  }
 
-
-    FunctionList& operator+=(void (*p0)(PARAMS))
-    {
-        Bind(p0);
-        return *this;
-    }
-
-    template <class ObjectType>
-    FunctionList& operator+=(const pair<ObjectType,templateICALLS>& p0)
-    {
-        Bind<ObjectType>(p0.object_pointer,p0.member_function_pointer);
-        return *this;
-    }
-
-    FunctionList& operator-=(void (*p0)(PARAMS))
-    {
-        if (calls[p0] != null)
+  template <class ObjType>
+  void Bind(ObjType* p0,void (ObjType::*p1)(PARAMS)) {
+    //horrible cast, as they say..
+    union {
+        struct
         {
-            delete calls[p0];
-            calls[p0] = null;
-            calls.erase(calls.find(p0));
-        }
-        return *this;
-    }
-
-    //check += , make it even
-    template <class ObjectType>
-    FunctionList& operator-=(const pair<ObjectType,templateICALLS>& p0)
-    {
-        union
-        {
+            ObjType* op;
             void (ObjType::*mf)(PARAMS);
-            void* mfptr;
-        }x;
+        }y;
+        void* mfptr;
+    } x;
 
-        x.mf = p0.mfp;
-        void* mapptr = x.mfptr;
-        if (calls[mapptr] != null)
-        {
-            delete calls[mapptr];
-            calls[mapptr] = null;
-            calls.erase(calls.find(mapptr));
-        }
-        return *this;
+    x.y.op=p0;
+    x.y.mf = p1;
+    void* mapptr = x.mfptr;
+    if (calls[mapptr] == null)
+      calls[mapptr] = new hidden::CallMemberFunction<ObjType,templateICALLS>(p0,p1);
+  }
+
+  void operator()(PARAMSwithVARS) {
+    std::map<void*, hidden::CallBase<templateICALLS>* >::iterator i;
+    for (i = calls.begin(); i != calls.end(); ++i)   {
+        (*i->second)(VARS);
     }
+  }
 
-    void Bind(void (*p0)(PARAMS))
-    {
-        if (calls[p0] == null)
-            calls[p0] = new hidden::CallStaticFunction<templateICALLS>(p0funcptr);
-    }
+ protected:
+ private:
+  void Clean() {
+      std::map<void*, hidden::CallBase<templateICALLS>* >::iterator i;
 
-    template <class ObjType>
-    void Bind(ObjType* p0,void (ObjType::*p1)(PARAMS))
-    {
-        //horrible cast, as they say..
-        union
-        {
-            struct
-            {
-                ObjType* op;
-                void (ObjType::*mf)(PARAMS);
-            }y;
-            void* mfptr;
-        }x;
+      for (i = calls.begin(); i != calls.end(); ++i) {
+          delete i->second;
+      }
 
-        x.y.op=p0;
-        x.y.mf = p1;
-        void* mapptr = x.mfptr;
-        if (calls[mapptr] == null)
-            calls[mapptr] = new hidden::CallMemberFunction<ObjType,templateICALLS>(p0,p1);
-    }
+      calls.clear();
 
-    void operator()(PARAMSwithVARS)
-    {
-        std::map<void*, hidden::CallBase<templateICALLS>* >::iterator i;
-
-        for (i = calls.begin(); i != calls.end(); i++)
-        {
-            (*i->second)(VARS);
-        }
-    }
-
-  protected:
-  private:
-    void Clean()
-    {
-        std::map<void*, hidden::CallBase<templateICALLS>* >::iterator i;
-
-        for (i = calls.begin(); i != calls.end(); i++)
-        {
-            delete i->second;
-        }
-
-        calls.clear();
-
-    }
-    std::map<void*, hidden::CallBase<templateICALLS>* > calls;
+  }
+  std::map<void*, hidden::CallBase<templateICALLS>* > calls;
 };
 
 }
