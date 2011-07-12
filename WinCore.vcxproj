@@ -72,6 +72,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="process\process_manager.cpp" />
     <ClCompile Include="windows\application.cpp" />
     <ClCompile Include="windows\window.cpp" />
   </ItemGroup>
@@ -82,7 +83,8 @@
     <ClInclude Include="collections\vector.h" />
     <ClInclude Include="delegation\delegation.h" />
     <ClInclude Include="delegation\delegation_template.h" />
-    <ClInclude Include="process.h" />
+    <ClInclude Include="process\process.h" />
+    <ClInclude Include="process\process_manager.h" />
     <ClInclude Include="timer\hpt.h" />
     <ClInclude Include="timer\timer.h" />
     <ClInclude Include="timer\timer2.h" />
