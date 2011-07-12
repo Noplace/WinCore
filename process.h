@@ -6,6 +6,7 @@
 
 namespace core {
 
+
 class Process {
  public:
   Process();
