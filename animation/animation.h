@@ -77,7 +77,8 @@ class TweenTemplate {
   bool running_;
 };
 
-typedef TweenTemplate<float,int> Tween;
+typedef float DefaultTimeType;
+typedef TweenTemplate<float,DefaultTimeType> Tween;
 typedef std::vector<Tween*> TweenVector;
 
 class ParallelTween : public Tween {
@@ -120,7 +121,7 @@ class ParallelTween : public Tween {
     }
   }
 
-  void Process(int delta) {
+  void Process(DefaultTimeType delta) {
     TweenVector::iterator i;
     Tween* tween_ptr;
     for (i = tween_list.begin(); i != tween_list.end(); ++i) {
@@ -129,8 +130,8 @@ class ParallelTween : public Tween {
     }
   }
 
-  int max_time() { return max_time_; }
-  void set_max_time(int max_time) {  }
+  DefaultTimeType max_time() { return max_time_; }
+  void set_max_time(DefaultTimeType max_time) {  }
   bool running() { return running_; }
 
   void AddTween(Tween* tween) {
@@ -177,7 +178,7 @@ class SeriesTween : public Tween {
     total_max = 0;
   }
 
-  void Process(int delta) {
+  void Process(DefaultTimeType delta) {
 
     if (current_index < (int)tween_list.size()) {
       Tween* tween_ptr = tween_list[current_index];
@@ -218,8 +219,8 @@ class SeriesTween : public Tween {
 
   //int current_time() { return current_time_; }
   //void  set_current_time(int current_time) { current_time_ = current_time; }
-  int max_time() { return max_time_; }
-  void  set_max_time(float max_time) {  }
+  DefaultTimeType max_time() { return max_time_; }
+  void  set_max_time(DefaultTimeType max_time) {  }
   bool  running() { return running_; }
 
   void AddTween(Tween* tween) {
@@ -229,12 +230,12 @@ class SeriesTween : public Tween {
  private:
   TweenVector tween_list;
   int current_index;
-  int total_max;
+  DefaultTimeType total_max;
 };
 
 class CubicMotion : public Tween {
  public:
-  void Process(int delta) {
+  void Process(DefaultTimeType delta) {
     *value_ptr_ = easing::in_out_cubic((float)current_play_time_,from_,to_,(float)max_time_);
     //current_time_ += delta;
   }
@@ -248,7 +249,7 @@ class CubicMotion : public Tween {
 
 class SineWave : public Tween {
  public:
-  void Process(int delta) {
+  void Process(DefaultTimeType delta) {
     float d = (float)current_play_time_ / (float)(max_time_);
     *value_ptr_ = amp_*sin((float)M_PI*2.0f*d);
     //current_time_ += delta;
@@ -263,24 +264,24 @@ class SineWave : public Tween {
 
 class Context {
  public:
-   Context():delta_(1) {}
+   Context() {}
   ~Context() {}
 
-  void Process() {
+  void Process(DefaultTimeType dt) {
     TweenVector::iterator i;
     Tween* tween_ptr;
     for (i = tween_list.begin(); i != tween_list.end(); ++i) {
       tween_ptr =  (*i);
-      tween_ptr->EncapsulatedProcess(delta_);
+      tween_ptr->EncapsulatedProcess(dt);
     }
     //std::remove_if
   }
 
-  void set_delta(int delta) { delta_ = delta; }
+
 
 // private:
   TweenVector tween_list;
-  int delta_;
+
 };
 
 }

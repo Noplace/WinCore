@@ -19,12 +19,12 @@ class Timer {
   void Calibrate() {
     start_cycles_ = GetCurrentCycles();
     QueryPerformanceFrequency((LARGE_INTEGER*)&frequency_);
-    resolution_ = 1.0f / frequency_;
+    resolution_ = 1000.0f / frequency_;
   }
 
   float time_slice() { return time_slice_; }
   uint64_t elapsed_ticks() { return elapsed_ticks_; }
-
+  float resolution() { return resolution_; }
   void Tick() {
     uint64_t elapsed_cycles = GetCurrentCycles() - start_cycles_;
     start_cycles_ = GetCurrentCycles();
@@ -46,6 +46,12 @@ class Timer {
         return false;
       }
   }
+
+  uint64_t GetCurrentCycles() {
+    QueryPerformanceCounter((LARGE_INTEGER*)&current_cycles_);
+    return current_cycles_; 
+  }
+
  private:
   float time_slice_;
   uint64_t elapsed_ticks_;
@@ -54,10 +60,6 @@ class Timer {
   uint64_t current_cycles_;
   uint64_t start_cycles_;
 
-  uint64_t GetCurrentCycles() {
-    QueryPerformanceCounter((LARGE_INTEGER*)&current_cycles_);
-    return current_cycles_; 
-  }
 
 };
 
