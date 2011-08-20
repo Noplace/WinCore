@@ -5,14 +5,13 @@
 
 namespace core {
 
-typedef std::vector<Process*> ProcessList;
-
 class ProcessManager {
  public:
+  typedef std::vector<Process*> ProcessList;
   ProcessManager();
   ~ProcessManager();
   void AddProcess(Process* process);
-  void Update(uint64_t dt);
+  void Update(float dt);
   bool HasProcesses();
  private:
   ProcessList process_list_;

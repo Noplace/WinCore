@@ -104,6 +104,10 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
           result = current_window->OnResize(wParam,lParam);
         }
         break;
+      case WM_INPUT: {
+          result = current_window->OnInput(wParam,lParam);
+        }
+        break;
       case WM_KEYDOWN: {
           result = current_window->OnKeyDown(wParam,lParam);
         }

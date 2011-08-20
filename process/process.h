@@ -10,7 +10,7 @@ class Process {
   Process() : pause_(false),kill_(false),active_(false) { }
   virtual ~Process() { }
   virtual void Initialize() = 0;
-  virtual void Update(uint64_t ) = 0;
+  virtual void Update(float) = 0;
   virtual void Uninitialize() = 0;
   bool pause() { return pause_; }
   void set_pause(bool pause) { pause_ = pause; }

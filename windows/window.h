@@ -36,6 +36,7 @@ class Window {
     virtual int OnRightButtonDown(WPARAM wParam,LPARAM lParam) { return -1; }
     virtual int OnRightButtonUp(WPARAM wParam,LPARAM lParam) { return -1; }
     virtual int OnCaptureChanged(WPARAM wParam,LPARAM lParam) { return -1; }
+    virtual int OnInput(WPARAM wParam,LPARAM lParam) { return -1; }
     virtual int OnKeyDown(WPARAM wParam,LPARAM lParam) { return -1; }
     virtual int OnKeyUp(WPARAM wParam,LPARAM lParam) { return -1; }
     virtual int OnSysKeyDown(WPARAM wParam,LPARAM lParam) { return -1; }

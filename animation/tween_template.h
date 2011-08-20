@@ -6,7 +6,7 @@ namespace animation {
 
 class Context;
 
-template <typename ValueType,typename TimeType>
+template <typename ValueType=float,typename TimeType=float>
 class TweenTemplate {
  public:
   TweenTemplate() : repeat_count_(0),running_(false),current_play_time_((TimeType)0),
