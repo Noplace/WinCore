@@ -24,15 +24,6 @@
     <ClCompile Include="process\process_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animation\sine_wave.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="animation\cubic_motion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="animation\spiral.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windows\application.h">
@@ -77,12 +68,6 @@
     <ClInclude Include="timer\timer2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="animation\animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\easing_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="collections\vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -90,30 +75,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="process\process_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\tween_template.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\tween.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\cubic_motion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\sine_wave.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\series.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\parallel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation\spiral.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

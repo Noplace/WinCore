@@ -75,7 +75,6 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
     case WM_NCCREATE: {
       CREATESTRUCT* create_struct = reinterpret_cast<CREATESTRUCT*>(lParam);
       Window* current_window = reinterpret_cast<Window*>(create_struct->lpCreateParams);
-      //Window::windows_map_[hwnd] = current_window;
       current_window->handle_ = hwnd;
       SetWindowLongPtr(hwnd,GWLP_USERDATA,PtrToUlong(current_window));
       return TRUE;
@@ -83,10 +82,9 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
     break;
   }
   
-  //Window* current_window = Window::windows_map_[hwnd];
   Window* current_window = reinterpret_cast<Window*>(static_cast<LONG_PTR>(GetWindowLongPtr(hwnd,GWLP_USERDATA)));
-  int result = -1;
-  if (current_window != NULL) {
+  int result = current_window->PreProcessMessages(hwnd,uMsg,wParam,lParam);
+  if (current_window != NULL && result == -1) {
     switch( uMsg ) {
       case WM_CREATE: {
           result = current_window->OnCreate(wParam,lParam);

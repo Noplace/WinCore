@@ -70,24 +70,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="animation\cubic_motion.cpp" />
-    <ClCompile Include="animation\sine_wave.cpp" />
-    <ClCompile Include="animation\spiral.cpp" />
     <ClCompile Include="process\process_manager.cpp" />
     <ClCompile Include="windows\application.cpp" />
     <ClCompile Include="windows\window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animation\animation.h" />
-    <ClInclude Include="animation\context.h" />
-    <ClInclude Include="animation\cubic_motion.h" />
-    <ClInclude Include="animation\easing_functions.h" />
-    <ClInclude Include="animation\parallel.h" />
-    <ClInclude Include="animation\series.h" />
-    <ClInclude Include="animation\sine_wave.h" />
-    <ClInclude Include="animation\spiral.h" />
-    <ClInclude Include="animation\tween.h" />
-    <ClInclude Include="animation\tween_template.h" />
     <ClInclude Include="collections\hash_table.h" />
     <ClInclude Include="collections\vector.h" />
     <ClInclude Include="delegation\delegation.h" />

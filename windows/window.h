@@ -44,7 +44,7 @@ class Window {
     virtual int OnSysCommand(WPARAM wParam,LPARAM lParam) { return -1; }
     virtual int OnClose(WPARAM wParam,LPARAM lParam) { return -1; }
     virtual int OnActivate(WPARAM wParam,LPARAM lParam) { return -1; }
-
+    virtual int PreProcessMessages(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) { return -1; }
   private:
     HWND handle_;
     DWORD style_;
