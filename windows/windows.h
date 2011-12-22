@@ -1,6 +1,8 @@
 #ifndef WINDOWS_WINDOWS_H
 #define WINDOWS_WINDOWS_H
 
+//#define nullptr 0
+
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 //#include <stdint.h>

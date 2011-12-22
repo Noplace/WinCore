@@ -17,8 +17,8 @@ void ProcessManager::AddProcess(Process* process) {
 
 void ProcessManager::Update(float dt) {
 
-  for (ProcessList::iterator i = process_list_.begin(); i != process_list_.end();) {
-    Process* process = *i;
+  for (auto i = process_list_.begin(); i != process_list_.end();) {
+    auto process = *i;
     if (process->active() == false) {
       process->set_active(true);
       process->Initialize();
@@ -33,7 +33,6 @@ void ProcessManager::Update(float dt) {
     }
 
   }
-  
 
 }
 

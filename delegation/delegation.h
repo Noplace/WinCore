@@ -53,3 +53,20 @@
 #undef templatePARAMS
 #undef templateICALLS
 #undef PNAMESPACE
+
+
+
+
+#define PARAMS PARAM(0),PARAM(1),PARAM(2)
+#define VARS VAR(0),VAR(1),VAR(2)
+#define PARAMSwithVARS PARAMVAR(0),PARAMVAR(1),PARAMVAR(2)
+#define templatePARAMS typename RETTYPE,typename PARAM(0),typename PARAM(1),typename PARAM(2)
+#define templateICALLS RETTYPE, PARAMS
+#define PNAMESPACE three
+#include "delegation_template.h"
+#undef PARAMS 
+#undef VARS 
+#undef PARAMSwithVARS 
+#undef templatePARAMS
+#undef templateICALLS
+#undef PNAMESPACE

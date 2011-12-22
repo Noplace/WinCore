@@ -100,6 +100,12 @@ class Function {
   ~Function()  {
       Clean();
   }
+  
+  template <class Func>
+  Function& operator=(Func& function) {
+      call = function.call;
+      return *this;
+  }
 
   Function& operator=(ReturnType (*p0)(PARAMS)) {
       Bind(p0);
