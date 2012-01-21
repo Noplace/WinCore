@@ -15,11 +15,11 @@ Application::Application(HINSTANCE instance , LPSTR command_line, int show_comma
 }
 
 Application::~Application() {
-
   FreeConsole();
 }
 
 void Application::InitConsole() {
+  FreeConsole();
   AllocConsole();
   HANDLE handle_out = GetStdHandle(STD_OUTPUT_HANDLE);
   int hCrt = _open_osfhandle((long) handle_out, _O_TEXT);
@@ -32,7 +32,6 @@ void Application::InitConsole() {
   FILE* hf_in = _fdopen(hCrt, "r");
   setvbuf(hf_in, NULL, _IONBF, 128);
   *stdin = *hf_in;
-    
 }
 
 bool Application::RanBefore(LPCSTR identifier) {

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "windows.h"
 
 namespace core {
@@ -10,7 +11,7 @@ Window::Window() {
 }
 
 Window::~Window() {
-//UnregisterClass(
+  Destroy();
 }
 
 void Window::SetClientSize(int width,int height) {
@@ -49,24 +50,28 @@ void Window::Hide() {
   ShowWindow(handle(), SW_HIDE); 
 }
 
-void Window::Create(TCHAR* title) {
+void Window::Create(char* title) {
   WNDCLASSEXA window_class;
+  sprintf(class_name_,"%s_class",title);
   memset(&window_class,0,sizeof(window_class));
   window_class.cbSize = sizeof(window_class);
   window_class.cbClsExtra = 0;
   window_class.cbWndExtra = 0;
   window_class.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
   window_class.lpfnWndProc = WindowProc;
-  window_class.lpszClassName = "Window Class";
+  window_class.lpszClassName = class_name_;
   window_class.hCursor = LoadCursor((HINSTANCE) NULL, IDC_ARROW); 
   window_class.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH)); 
   
-  RegisterClassEx(&window_class);
+  class_ = RegisterClassEx(&window_class);
   
-  CreateWindow("Window Class",title,WS_CLIPSIBLINGS | WS_CLIPCHILDREN | style(),0,0,100,100,NULL,NULL,NULL,this);
+  CreateWindow(class_name_,title,WS_CLIPSIBLINGS | WS_CLIPCHILDREN | style(),0,0,100,100,NULL,NULL,NULL,this);
   SetWindowText(handle_,title);
 }
 
+void Window::Destroy() {
+  UnregisterClass(class_name_,0);
+}
 
 LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
   
