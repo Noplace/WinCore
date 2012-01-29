@@ -70,6 +70,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="log\log_manager.cpp" />
     <ClCompile Include="process\process_manager.cpp" />
     <ClCompile Include="windows\application.cpp" />
     <ClCompile Include="windows\window.cpp" />
@@ -79,6 +80,8 @@
     <ClInclude Include="collections\vector.h" />
     <ClInclude Include="delegation\delegation.h" />
     <ClInclude Include="delegation\delegation_template.h" />
+    <ClInclude Include="hash\hash.h" />
+    <ClInclude Include="log\log_manager.h" />
     <ClInclude Include="process\process.h" />
     <ClInclude Include="process\process_manager.h" />
     <ClInclude Include="timer\hpt.h" />
