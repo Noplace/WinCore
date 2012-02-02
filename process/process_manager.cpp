@@ -14,7 +14,6 @@ void ProcessManager::AddProcess(Process* process) {
   process_list_.push_back(process);
 }
 
-
 void ProcessManager::Update(float dt) {
 
   for (auto i = process_list_.begin(); i != process_list_.end();) {
