@@ -20,7 +20,7 @@
 #define TYPES_H
   
 #include <stdint.h>
-
+#include <stddef.h>
 #define null 0
 
 template<class Interface> 
