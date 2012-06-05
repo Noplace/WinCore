@@ -95,6 +95,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <AdditionalOptions>/D "_HAS_EXCEPTIONS=0" /wd4275 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

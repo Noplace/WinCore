@@ -19,7 +19,6 @@
 #ifndef UISYSTEM_UTILITIES_TIMER2_H
 #define UISYSTEM_UTILITIES_TIMER2_H
 
-#include <windows.h>
 #include "../types.h"
 
 namespace utilities {
