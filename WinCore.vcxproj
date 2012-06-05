@@ -159,6 +159,7 @@
     <ClCompile Include="log\log_manager.cpp" />
     <ClCompile Include="process\process_manager.cpp" />
     <ClCompile Include="windows\application.cpp" />
+    <ClCompile Include="windows\thread.cpp" />
     <ClCompile Include="windows\window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +176,7 @@
     <ClInclude Include="timer\timer2.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="windows\application.h" />
+    <ClInclude Include="windows\thread.h" />
     <ClInclude Include="windows\window.h" />
     <ClInclude Include="windows\windows.h" />
     <ClInclude Include="xml\rapidxml\rapidxml.hpp" />
