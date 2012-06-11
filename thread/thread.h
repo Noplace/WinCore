@@ -16,14 +16,7 @@
 * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE            *
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                                         *
 *****************************************************************************************************************/
-#ifndef WINDOWS_WINDOWS_H
-#define WINDOWS_WINDOWS_H
-
-//#define nullptr 0
-
-#include "base.h"
-#include "application.h"
-#include "window.h"
-
+#ifndef THREAD_THREAD_H
+#define THREAD_THREAD_H
 
 #endif

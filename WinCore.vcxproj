@@ -64,8 +64,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
@@ -157,9 +157,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="log\log_manager.cpp" />
+    <ClCompile Include="memory\memory.cpp" />
     <ClCompile Include="process\process_manager.cpp" />
     <ClCompile Include="windows\application.cpp" />
-    <ClCompile Include="windows\thread.cpp" />
+    <ClCompile Include="thread\thread.cpp" />
     <ClCompile Include="windows\window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="delegation\delegation_template.h" />
     <ClInclude Include="hash\hash.h" />
     <ClInclude Include="log\log_manager.h" />
+    <ClInclude Include="memory\memory.h" />
     <ClInclude Include="process\process.h" />
     <ClInclude Include="process\process_manager.h" />
     <ClInclude Include="timer\hpt.h" />
@@ -176,7 +178,8 @@
     <ClInclude Include="timer\timer2.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="windows\application.h" />
-    <ClInclude Include="windows\thread.h" />
+    <ClInclude Include="thread\thread.h" />
+    <ClInclude Include="windows\base.h" />
     <ClInclude Include="windows\window.h" />
     <ClInclude Include="windows\windows.h" />
     <ClInclude Include="xml\rapidxml\rapidxml.hpp" />

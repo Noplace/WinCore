@@ -16,14 +16,19 @@
 * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE            *
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                                         *
 *****************************************************************************************************************/
-#ifndef WINDOWS_WINDOWS_H
-#define WINDOWS_WINDOWS_H
+#ifndef MEMORY_MEMORY_H
+#define MEMORY_MEMORY_H
 
-//#define nullptr 0
+#include "../windows/base.h"
 
-#include "base.h"
-#include "application.h"
-#include "window.h"
+void  virtualInit(uint32_t reserve_size);
+void  virtualDeinit();
+void* virtualAlloc(uint32_t size_bytes);
+void  virtualFree(void* ptr);
 
+template<typename T>
+T* virtualAlloc(uint32_t count) {
+  return (T*)virtualAlloc(count*sizeof(T));
+}
 
 #endif

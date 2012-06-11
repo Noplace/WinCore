@@ -16,14 +16,12 @@
 * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE            *
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                                         *
 *****************************************************************************************************************/
-#ifndef WINDOWS_WINDOWS_H
-#define WINDOWS_WINDOWS_H
+#ifndef WINDOWS_BASE_H
+#define WINDOWS_BASE_H
 
-//#define nullptr 0
-
-#include "base.h"
-#include "application.h"
-#include "window.h"
-
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+//#include <stdint.h>
+#include "../types.h"
 
 #endif
