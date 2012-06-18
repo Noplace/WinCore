@@ -145,6 +145,10 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
             result = current_window->OnClose(wParam,lParam);
           }
           break;
+        case WM_ACTIVATE : {
+            result = current_window->OnActivate(wParam,lParam);
+          }
+          break;
         case WM_SIZE: {
             result = current_window->OnResize(wParam,lParam);
           }
