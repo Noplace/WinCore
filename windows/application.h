@@ -37,6 +37,8 @@ class Application {
    virtual int Run() = 0;
    void InitConsole();
    bool RanBefore(LPCSTR identifier);
+ protected:
+   HANDLE ran_before_;
 };
 
 }

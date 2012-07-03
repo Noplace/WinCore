@@ -25,15 +25,19 @@ namespace core {
 namespace windows {
 
 
-Application::Application() {
+Application::Application() : ran_before_(nullptr) {
 }
 
-Application::Application(HINSTANCE instance , LPSTR command_line, int show_command) {
+Application::Application(HINSTANCE instance , LPSTR command_line, int show_command) : ran_before_(nullptr) {
 
 }
 
 Application::~Application() {
   FreeConsole();
+ if (ran_before_ != nullptr) {
+   CloseHandle(ran_before_);
+   ran_before_ = nullptr;
+ }
 }
 
 void Application::InitConsole() {
@@ -53,7 +57,7 @@ void Application::InitConsole() {
 }
 
 bool Application::RanBefore(LPCSTR identifier) {
-  HANDLE handle = CreateMutex(NULL,TRUE,identifier);
+  ran_before_ = CreateMutex(NULL,TRUE,identifier);
   if (GetLastError() == ERROR_ALREADY_EXISTS) {
     return true;
   }

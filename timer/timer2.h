@@ -28,7 +28,6 @@ inline T clamp(T x, T a, T b)   {
   return x < a ? a : (x > b ? b : x);
 }
 
-template<typename T>
 class Timer {
  public:
   Timer():time_slice_(0) {
@@ -37,17 +36,18 @@ class Timer {
   void Calibrate() {
     start_cycles_ = GetCurrentCycles();
     QueryPerformanceFrequency((LARGE_INTEGER*)&frequency_);
-    resolution_ = (T)1000.0 / frequency_;
+    resolution_ = 1000.0 / frequency_;
+    resolution_ns_ = 1000000 / frequency_;
   }
 
-  T time_slice() { return time_slice_; }
+  double time_slice() { return time_slice_; }
   uint64_t elapsed_ticks() { return elapsed_ticks_; }
-  T resolution() { return resolution_; }
+  __forceinline double resolution() { return resolution_; }
   void Tick() {
     uint64_t elapsed_cycles = GetCurrentCycles() - start_cycles_;
     start_cycles_ = GetCurrentCycles();
     elapsed_ticks_ = elapsed_cycles;
-    time_slice_ = (1.0 / 1000.0) * (T)elapsed_ticks_;
+    time_slice_ = (1.0 / 1000.0) * (double)elapsed_ticks_;
   }
 
   bool isTimeForUpdate(int framerate)
@@ -65,7 +65,7 @@ class Timer {
       }
   }
 
-  uint64_t GetCurrentCycles() {
+  __forceinline uint64_t GetCurrentCycles() {
     QueryPerformanceCounter((LARGE_INTEGER*)&current_cycles_);
     return current_cycles_; 
   }
@@ -75,8 +75,9 @@ class Timer {
   uint64_t frequency_;
   uint64_t current_cycles_;
   uint64_t start_cycles_;
-  T time_slice_;
-  T resolution_;
+  uint64_t resolution_ns_;
+  double time_slice_;
+  double resolution_;
 };
 
 }
