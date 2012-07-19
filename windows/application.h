@@ -19,7 +19,7 @@
 #ifndef WINDOWS_APPLICATION_H
 #define WINDOWS_APPLICATION_H
 
-#include <windows.h>
+#include "base.h"
 
 namespace core {
 namespace windows {

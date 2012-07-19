@@ -19,6 +19,7 @@
 #ifndef WINDOWS_BASE_H
 #define WINDOWS_BASE_H
 
+#include "../math/math.h"
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 //#include <stdint.h>

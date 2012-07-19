@@ -16,53 +16,14 @@
 * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE            *
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                                         *
 *****************************************************************************************************************/
-#include "application.h"
-#include <stdio.h>
-#include <io.h>
-#include <fcntl.h>
+#ifndef MATH_MATH_H
+#define MATH_MATH_H
 
-namespace core {
-namespace windows {
+#ifdef __INTEL_COMPILER
+#include <mathimf.h>
+#define _INC_MATH
+#else
+#include <math.h>
+#endif
 
-
-Application::Application() : ran_before_(nullptr) {
-}
-
-Application::Application(HINSTANCE instance , LPSTR command_line, int show_command) : ran_before_(nullptr) {
-
-}
-
-Application::~Application() {
-  FreeConsole();
- if (ran_before_ != nullptr) {
-   CloseHandle(ran_before_);
-   ran_before_ = nullptr;
- }
-}
-
-void Application::InitConsole() {
-  FreeConsole();
-  AllocConsole();
-  HANDLE handle_out = GetStdHandle(STD_OUTPUT_HANDLE);
-  int hCrt = _open_osfhandle((intptr_t) handle_out, _O_TEXT);
-  FILE* hf_out = _fdopen(hCrt, "w");
-  setvbuf(hf_out, NULL, _IONBF, 1);
-  *stdout = *hf_out;
-
-  HANDLE handle_in = GetStdHandle(STD_INPUT_HANDLE);
-  hCrt = _open_osfhandle((intptr_t) handle_in, _O_TEXT);
-  FILE* hf_in = _fdopen(hCrt, "r");
-  setvbuf(hf_in, NULL, _IONBF, 128);
-  *stdin = *hf_in;
-}
-
-bool Application::RanBefore(LPCSTR identifier) {
-  ran_before_ = CreateMutex(NULL,TRUE,identifier);
-  if (GetLastError() == ERROR_ALREADY_EXISTS) {
-    return true;
-  }
-  return false;
-}
-
-}
-}
+#endif
