@@ -16,16 +16,22 @@
 * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE            *
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                                         *
 *****************************************************************************************************************/
-#ifndef MATH_MATH_H
-#define MATH_MATH_H
+#ifndef MATH_SP_CORE_H
+#define MATH_SP_CORE_H
 
-#ifdef __INTEL_COMPILER
-#include <mathimf.h>
-#define _INC_MATH
-#else
-#include <math.h>
-#endif
+namespace core {
+namespace math {
 
-#include "sp_core.h"
+class SP {
+ public:
+  static float fastsin(float x) {
+    float x2 = x*x;
+    return (((-0.00018542f*x2 + 0.0083143f)*x2 - 0.16666f)*x2 + 1.0f) * x;
+  }
+};
+
+}
+}
+
 
 #endif

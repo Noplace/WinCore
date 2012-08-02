@@ -19,6 +19,8 @@
 #ifndef IO_IO_H
 #define IO_IO_H
 
+#include "../types.h"
+
 namespace core {
 namespace io {
 

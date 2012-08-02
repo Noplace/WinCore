@@ -319,6 +319,7 @@
     <ClInclude Include="math\fft\kiss_fft.h" />
     <ClInclude Include="math\fft\_kiss_fft_guts.h" />
     <ClInclude Include="math\math.h" />
+    <ClInclude Include="math\sp_core.h" />
     <ClInclude Include="memory\memory.h" />
     <ClInclude Include="process\process.h" />
     <ClInclude Include="process\process_manager.h" />
