@@ -53,6 +53,7 @@ void LogManager::Deinitialize() {
       CloseChannel(i);
   }
   if (requests_thread!=nullptr) {
+    WaitForSingleObject(requests_thread,INFINITE);
     CloseHandle(requests_thread);
     requests_thread = nullptr;
     DeleteCriticalSection(&requests_cs);
@@ -61,7 +62,7 @@ void LogManager::Deinitialize() {
 }
 
 LogManager& LogManager::Channel(char* channel_name) {
-  unsigned int channel_index = core::Hash::hashx(channel_name,strlen(channel_name),8);
+  unsigned int channel_index = core::Hash::hashx(channel_name,(unsigned int)strlen(channel_name),8);
   current_channel = OpenChannel(channel_index,channel_name);
   return *this;
 }
@@ -138,6 +139,7 @@ void LogManager::CloseChannel(int index) {
 void LogManager::CloseThread(LogChannel* ch) {
   if (ch != nullptr && ch->th != NULL) {
     EnterCriticalSection(&ch->critical_section);
+    WaitForSingleObject(ch->th,INFINITE);
     CloseHandle(ch->th);
     LeaveCriticalSection(&ch->critical_section);
     ch->th = NULL;

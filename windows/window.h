@@ -71,6 +71,7 @@ class Window {
   virtual int OnClose(WPARAM wParam,LPARAM lParam) { return -1; }
   virtual int OnActivate(WPARAM wParam,LPARAM lParam) { return -1; }
   virtual int OnDropFiles(WPARAM wParam,LPARAM lParam) { return -1; }
+  virtual int OnPaint(WPARAM wParam,LPARAM lParam) { return -1; }
   virtual int PreProcessMessages(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) { return -1; }
  private:
   bool has_menu_;

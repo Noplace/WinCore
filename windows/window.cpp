@@ -52,7 +52,7 @@ void Window::SetClientSize(int width,int height) {
   client_height_ = height;
   RECT rectangle;
   SetRect(&rectangle,0,0,client_width_,client_height_);
-  AdjustWindowRect(&rectangle,style(),has_menu_);
+  AdjustWindowRectEx(&rectangle,style(),has_menu_,0);
   
  
   int actual_width  = static_cast<int>(rectangle.right  - rectangle.left);
@@ -124,7 +124,7 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
   }
   
   Window* current_window = reinterpret_cast<Window*>(static_cast<LONG_PTR>(GetWindowLongPtr(hwnd,GWLP_USERDATA)));
-  int result = -1;
+  LRESULT result = -1;
   if (current_window != NULL) {
     result = current_window->PreProcessMessages(hwnd,uMsg,wParam,lParam);
     if (result == -1) {
@@ -213,6 +213,9 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
        case WM_DROPFILES: {
           result = current_window->OnDropFiles(wParam,lParam);
         }
+       case WM_PAINT: {
+         result = current_window->OnPaint(wParam,lParam);
+       }
         default:
           result = -1;
           break;
