@@ -117,7 +117,7 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
       CREATESTRUCT* create_struct = reinterpret_cast<CREATESTRUCT*>(lParam);
       Window* current_window = reinterpret_cast<Window*>(create_struct->lpCreateParams);
       current_window->handle_ = hwnd;
-      SetWindowLongPtr(hwnd,GWLP_USERDATA,PtrToUlong(current_window));
+      SetWindowLongPtr(hwnd,GWLP_USERDATA,(ULONG_PTR)(current_window));
       return TRUE;
     }  
     break;
