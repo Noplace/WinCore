@@ -23,6 +23,8 @@
 #include <stddef.h>
 #define null 0
 
+typedef float real_t;
+
 template<class Interface> 
 inline void SafeRelease(Interface **ppInterfaceToRelease) {
     if (*ppInterfaceToRelease != NULL) {

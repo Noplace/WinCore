@@ -122,8 +122,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+<<<<<<< HEAD
     <OutDir>C:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>C:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</IntDir>
+=======
+    <OutDir>D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\Libs\</OutDir>
+    <IntDir>D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\Libs\</IntDir>
+    <IncludePath>D:\Personal\Projects\WinCore;$(IncludePath)</IncludePath>
+>>>>>>> b1bede782de4c823595cfe041ba3bc7bc9f239bd
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Intel C++|Win32'">
     <OutDir>D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</OutDir>
@@ -136,7 +142,12 @@
     <OutDir>D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+<<<<<<< HEAD
     <IntDir>C:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</IntDir>
+=======
+    <IntDir>D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>D:\Personal\Projects\WinCore;$(IncludePath)</IncludePath>
+>>>>>>> b1bede782de4c823595cfe041ba3bc7bc9f239bd
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Intel C++|x64'">
     <IntDir>D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</IntDir>
