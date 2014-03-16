@@ -7,7 +7,11 @@
     <DebuggerFlavor Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WindowsLocalDebugger</DebuggerFlavor>
+<<<<<<< HEAD
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</LocalDebuggerWorkingDirectory>
+=======
     <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\Libs\</LocalDebuggerWorkingDirectory>
+>>>>>>> b1bede782de4c823595cfe041ba3bc7bc9f239bd
     <DebuggerFlavor Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Personal\ProjectOutputs\$(SolutionName)\$(Platform)\$(Configuration)\</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
